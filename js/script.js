@@ -4,8 +4,8 @@ var container = document.querySelector('.container');
 var span = document.querySelector('.close');
 
 //CITY SHORTENER
-function cityShort(city){
-switch(city) {
+function stateShort(state){
+switch(state) {
   case 'new south wales':
     return 'NSW'
     break;
@@ -42,8 +42,8 @@ container.addEventListener('click', function(e){
     $('.m-city').text(employees[modalIndex].location.city);
     $('.m-number').text(employees[modalIndex].number);
     $('.m-address').text(employees[modalIndex].location.street
-      + ", "
-      + cityShort(employees[modalIndex].location.state)
+      + ", " + employees[modalIndex].location.city + " "
+      + stateShort(employees[modalIndex].location.state)
       + " " + employees[modalIndex].location.postcode);
     let birthday = employees[modalIndex].dob.date;
     let bDate = birthday.substring(8,10);
