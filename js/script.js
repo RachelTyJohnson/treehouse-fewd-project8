@@ -3,6 +3,8 @@ var modal = document.getElementById('theModal');
 var container = document.querySelector('.container');
 var span = document.querySelector('.close');
 
+let employees = [];
+
 //CITY SHORTENER
 function stateShort(state){
 switch(state) {
@@ -36,22 +38,48 @@ container.addEventListener('click', function(e){
   if (e.target.closest(".card")){
     modal.style.display = "block";
     let modalIndex = e.target.parentNode.dataset.index;
-    $('.m-photo').attr('src', employees[modalIndex].photo);
-    $('.m-name').text(employees[modalIndex].name);
-    $('.m-email').html(`<a href="mailto:${employees[modalIndex].email}">${employees[modalIndex].email}</a>`);
-    $('.m-city').text(employees[modalIndex].location.city);
-    $('.m-number').text(employees[modalIndex].number);
-    $('.m-address').text(employees[modalIndex].location.street
-      + ", " + employees[modalIndex].location.city + " "
-      + stateShort(employees[modalIndex].location.state)
-      + " " + employees[modalIndex].location.postcode);
-    let birthday = employees[modalIndex].dob.date;
-    let bDate = birthday.substring(8,10);
-    let bMonth = birthday.substring(5,7);
-    let bYear = birthday.substring(2,4);;
-    $('.m-dob').text(`Birthday: ${bDate}/${bMonth}/${bYear}`);
+    changeModalContent(modalIndex);
   }
 });
+
+theModal.addEventListener('click',function(e){
+  if (e.target.className=="m-next"){
+    let currentIndex = parseInt(e.target.parentNode.dataset.index);
+    nextIndex = currentIndex+1;
+    if(currentIndex!==14){
+      changeModalContent(nextIndex);
+    } else {
+      changeModalContent(0);
+    }
+  }
+  if (e.target.className=="m-previous"){
+    let currentIndex = parseInt(e.target.parentNode.dataset.index);
+    previousIndex = currentIndex-1;
+    if(currentIndex!==0){
+      changeModalContent(previousIndex);
+    } else {
+      changeModalContent(14);
+    }
+  }
+});
+
+function changeModalContent(modalIndex){
+  $('.modal-box').attr('data-index', modalIndex);
+  $('.m-photo').attr('src', employees[modalIndex].photo);
+  $('.m-name').text(employees[modalIndex].name);
+  $('.m-email').html(`<a href="mailto:${employees[modalIndex].email}">${employees[modalIndex].email}</a>`);
+  $('.m-city').text(employees[modalIndex].location.city);
+  $('.m-number').text(employees[modalIndex].number);
+  $('.m-address').text(employees[modalIndex].location.street
+    + ", " + employees[modalIndex].location.city + " "
+    + stateShort(employees[modalIndex].location.state)
+    + " " + employees[modalIndex].location.postcode);
+  let birthday = employees[modalIndex].dob.date;
+  let bDate = birthday.substring(8,10);
+  let bMonth = birthday.substring(5,7);
+  let bYear = birthday.substring(2,4);;
+  $('.m-dob').text(`Birthday: ${bDate}/${bMonth}/${bYear}`);
+}
 
 span.onclick = function() {
   modal.style.display = "none";
@@ -64,7 +92,6 @@ window.onclick = function(event) {
 }
 
 //API STUFF
-let employees = [];
 
 function createCard(i,person){
   let personObject = {

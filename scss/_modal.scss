@@ -73,6 +73,26 @@
   top:-3px;
 }
 
+.m-previous,
+.m-next{
+  color:#aaa;
+  font-size:50px;
+  position:absolute;
+  top:170px;
+  &:hover{
+    color:white;
+  }
+  cursor:pointer;
+}
+
+.m-previous{
+  left:-50px;
+}
+
+.m-next{
+  right:-50px;
+}
+
 .close:hover,
 .close:focus {
   color: $brand-color-primary;
