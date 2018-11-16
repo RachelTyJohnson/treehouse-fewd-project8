@@ -42,24 +42,32 @@ container.addEventListener('click', function(e){
   }
 });
 
+function nextSlide(e){
+  let currentIndex = parseInt(e.target.parentNode.dataset.index);
+  nextIndex = currentIndex+1;
+  if(currentIndex!==14){
+    changeModalContent(nextIndex);
+  } else {
+    changeModalContent(0);
+  }
+}
+
+function previousSlide(e){
+  let currentIndex = parseInt(e.target.parentNode.dataset.index);
+  previousIndex = currentIndex-1;
+  if(currentIndex!==0){
+    changeModalContent(previousIndex);
+  } else {
+    changeModalContent(14);
+  }
+}
+
 theModal.addEventListener('click',function(e){
   if (e.target.className=="m-next"){
-    let currentIndex = parseInt(e.target.parentNode.dataset.index);
-    nextIndex = currentIndex+1;
-    if(currentIndex!==14){
-      changeModalContent(nextIndex);
-    } else {
-      changeModalContent(0);
-    }
+    nextSlide(e);
   }
   if (e.target.className=="m-previous"){
-    let currentIndex = parseInt(e.target.parentNode.dataset.index);
-    previousIndex = currentIndex-1;
-    if(currentIndex!==0){
-      changeModalContent(previousIndex);
-    } else {
-      changeModalContent(14);
-    }
+    previousSlide(e);
   }
 });
 
@@ -124,3 +132,15 @@ fetch('https://randomuser.me/api/?nat=au&results=15')
   .then(function(people) {
     $.each(people.results, createCard);
   })
+
+//search box
+$("#searchbar").on("keyup", function() {
+    let value = $(this).val().toLowerCase();
+    $(".card").filter(function() {
+      if ( $(this).html().toLowerCase().indexOf(value) > -1 ){
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });

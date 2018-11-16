@@ -10,10 +10,8 @@
   top: 0;
   width: 100%;
   /* Full width */
-  height: 100%;
+  height: 100vh;
   /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */
   background-color: black;
   /* Fallback color */
   background-color: rgba(0, 0, 0, 0.7);
@@ -31,7 +29,7 @@
   max-width: 280px;
   /* Could be more or less, depending on screen size */
 }
-@media (min-width: 656px) {
+@media (min-width: 697px) {
   .modal-box {
     max-width: 350px;
   }
@@ -66,8 +64,11 @@
   width: 90%;
   margin-top: 10px;
 }
-.modal-content .m-name, .modal-content .m-city, .modal-content .m-address {
+.modal-content .m-address,
+.modal-content .m-city,
+.modal-content .m-name {
   text-transform: capitalize;
+  text-align: center;
 }
 .modal-content a {
   color: #848484;
@@ -86,29 +87,45 @@
   top: -3px;
 }
 
-.m-previous,
-.m-next {
+.m-next,
+.m-previous {
   color: #aaa;
-  font-size: 50px;
+  font-size: 30px;
   position: absolute;
   top: 170px;
   cursor: pointer;
 }
-.m-previous:hover,
-.m-next:hover {
-  color: white;
+@media (min-width: 697px) {
+  .m-next,
+.m-previous {
+    font-size: 50px;
+  }
+}
+.m-next:hover,
+.m-previous:hover {
+  color: #666;
 }
 
 .m-previous {
-  left: -50px;
+  left: 5px;
+}
+@media (min-width: 697px) {
+  .m-previous {
+    left: -50px;
+  }
 }
 
 .m-next {
-  right: -50px;
+  right: 5px;
+}
+@media (min-width: 697px) {
+  .m-next {
+    right: -50px;
+  }
 }
 
-.close:hover,
-.close:focus {
+.close:focus,
+.close:hover {
   color: #053f38;
   text-decoration: none;
   cursor: pointer;
@@ -141,7 +158,7 @@ main input {
   border: 1px solid #848484;
   font-size: 1em;
 }
-@media (min-width: 656px) {
+@media (min-width: 697px) {
   main input {
     width: 400px;
   }
@@ -184,15 +201,15 @@ footer {
   padding: 20px 10px;
   position: relative;
   display: flex;
-  flex-grow: 1;
   width: 310px;
+  flex-grow: 1;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: flex-start;
   transition: 0.3s border, 0.3s background-color;
 }
-@media (min-width: 656px) {
+@media (min-width: 697px) {
   .container .card {
     flex-direction: row;
     text-align: left;
