@@ -131,6 +131,29 @@ body {
 main {
   flex-grow: 1;
 }
+main input {
+  display: block;
+  text-align: center;
+  width: 280px;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 10px 15px;
+  border: 1px solid #848484;
+  font-size: 1em;
+}
+@media (min-width: 656px) {
+  main input {
+    width: 400px;
+  }
+}
+@media (min-width: 1024px) {
+  main input {
+    width: 600px;
+  }
+}
+main input::placeholder {
+  color: #d1d1d1;
+}
 
 h1 {
   text-align: center;
