@@ -201,7 +201,7 @@ footer {
   padding: 20px 10px;
   position: relative;
   display: flex;
-  width: 310px;
+  max-width: 310px;
   flex-grow: 1;
   flex-direction: column;
   text-align: center;
